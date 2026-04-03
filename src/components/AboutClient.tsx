@@ -4,17 +4,17 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface TimelineItem {
-    year: string;
-    title: string;
-    description: string;
+    readonly year: string;
+    readonly title: string;
+    readonly description: string;
 }
 
 interface AboutData {
-    pageTitle: string;
-    story: unknown;
-    skills: string[];
-    profileImage?: string;
-    timeline: TimelineItem[];
+    readonly pageTitle: string;
+    readonly story: unknown;
+    readonly skills: readonly string[];
+    readonly profileImage?: string | null;
+    readonly timeline: readonly TimelineItem[];
 }
 
 interface AboutClientProps {

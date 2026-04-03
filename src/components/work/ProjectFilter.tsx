@@ -47,7 +47,7 @@ export default function ProjectFilter({ projects }: ProjectFilterProps) {
             <motion.div layout className="grid gap-6 md:grid-cols-2">
                 <AnimatePresence mode="popLayout">
                     {filteredProjects.map((project) => (
-                        <ProjectCard key={project.title} className="flex flex-col h-full">
+                        <ProjectCard key={project.title.name} className="flex flex-col h-full">
                             <div className="flex items-center justify-between text-sm text-white/60">
                                 <span className="uppercase tracking-[0.3em] text-xs">{project.status}</span>
                                 <div className="flex flex-wrap gap-2 text-xs">
@@ -59,7 +59,7 @@ export default function ProjectFilter({ projects }: ProjectFilterProps) {
                                 </div>
                             </div>
                             <div className="mt-4 flex-grow space-y-3">
-                                <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                                <h3 className="text-2xl font-semibold text-white">{project.title.name}</h3>
                                 <p className="text-white/70">{project.description}</p>
                             </div>
                             <Link

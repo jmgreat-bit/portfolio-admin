@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface ProgressUpdate {
-    slug: string;
-    title: { name: string };
-    date: string | null;
-    status: string;
-    image?: string;
-    videoUrl?: string;
+    readonly slug: string;
+    readonly title: { readonly name: string };
+    readonly date: string | null;
+    readonly status: string;
+    readonly image?: string | null;
+    readonly videoUrl?: string;
 }
 
 interface ProgressClientProps {
-    updates: ProgressUpdate[];
+    readonly updates: readonly ProgressUpdate[];
 }
 
 export default function ProgressClient({ updates }: ProgressClientProps) {

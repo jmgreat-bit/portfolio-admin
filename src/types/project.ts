@@ -1,9 +1,9 @@
 export type Project = {
-    title: string;
-    description: string;
-    tags: string[];
-    link?: string;
-    status: "live" | "building" | "idea";
-    type?: string;
-    image?: string;
+    readonly title: { readonly name: string };
+    readonly description: string;
+    readonly tags: readonly string[];
+    readonly link?: string;
+    readonly status: "live" | "building" | "idea";
+    readonly type?: string;
+    readonly image?: string;
 };

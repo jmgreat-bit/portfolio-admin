@@ -5,16 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 interface Insight {
-    slug: string;
-    title: { name: string };
-    date: string | null;
-    tags: string[];
-    featuredImage?: string;
-    videoUrl?: string;
+    readonly slug: string;
+    readonly title: { readonly name: string };
+    readonly date: string | null;
+    readonly tags: readonly string[];
+    readonly featuredImage?: string | null;
+    readonly videoUrl?: string;
 }
 
 interface IdeasClientProps {
-    insights: Insight[];
+    readonly insights: readonly Insight[];
 }
 
 export default function IdeasClient({ insights }: IdeasClientProps) {

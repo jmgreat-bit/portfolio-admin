@@ -6,23 +6,23 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface HomepageData {
-    tagline: string;
-    headline: string;
-    subheadline: string;
-    available: boolean;
-    ctaButtons: Array<{ label: string; link: string; style: string }>;
-    stats: Array<{ value: string; label: string }>;
-    explorationsTagline: string;
-    explorationsHeadline: string;
-    explorationsDescription: string;
+    readonly tagline: string;
+    readonly headline: string;
+    readonly subheadline: string;
+    readonly available: boolean;
+    readonly ctaButtons: readonly { readonly label: string; readonly link: string; readonly style: string }[];
+    readonly stats: readonly { readonly value: string; readonly label: string }[];
+    readonly explorationsTagline: string;
+    readonly explorationsHeadline: string;
+    readonly explorationsDescription: string;
 }
 
 interface Project {
-    slug: string;
-    title: { name: string };
-    description?: string;
-    image?: string;
-    status: string;
+    readonly slug: string;
+    readonly title: { readonly name: string };
+    readonly description?: string | null;
+    readonly image?: string | null;
+    readonly status: string;
 }
 
 interface HomepageClientProps {
