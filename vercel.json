@@ -1,0 +1,6 @@
+{
+  "name": "thegreatweb-admin",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build"
+}

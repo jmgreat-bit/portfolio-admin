@@ -2,8 +2,10 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
     storage: {
-        kind: 'github',
-        repo: 'jmgreat-bit/portfolio',
+        kind: process.env.NODE_ENV === 'production' ? 'cloud' : 'local',
+    },
+    cloud: {
+        project: 'jmgreat-bit/portfolio-admin',
     },
     collections: {
         insights: collection({
