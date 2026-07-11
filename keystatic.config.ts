@@ -30,27 +30,33 @@ export default config({
             label: 'Projects',
             slugField: 'title',
             path: 'src/content/projects/*',
+            format: { contentField: 'content' },
             schema: {
                 title: fields.slug({ name: { label: 'Title' } }),
-                type: fields.select({
-                    label: 'Type',
+                featured: fields.checkbox({ label: 'Featured Project', defaultValue: false }),
+                domain: fields.select({
+                    label: 'Domain',
                     options: [
-                        { label: 'Animation', value: 'animation' },
-                        { label: 'AI Experiment', value: 'ai' },
-                        { label: 'Tool / Prototype', value: 'tool' },
-                        { label: 'Short Film', value: 'film' },
-                        { label: 'Web Experience', value: 'web' },
+                        { label: 'Information Intelligence', value: 'information-intelligence' },
+                        { label: 'Artificial Intelligence', value: 'artificial-intelligence' },
+                        { label: 'Commerce & Finance', value: 'commerce-finance' },
+                        { label: 'Space & Scientific Computing', value: 'space-scientific' },
+                        { label: 'Productivity', value: 'productivity' },
+                        { label: 'Utilities', value: 'utilities' },
                     ],
-                    defaultValue: 'animation',
+                    defaultValue: 'artificial-intelligence',
                 }),
-                status: fields.select({
-                    label: 'Status',
+                maturity: fields.select({
+                    label: 'Maturity',
                     options: [
                         { label: 'Live', value: 'live' },
-                        { label: 'Building', value: 'building' },
-                        { label: 'Idea', value: 'idea' },
+                        { label: 'Production', value: 'production' },
+                        { label: 'Prototype', value: 'prototype' },
+                        { label: 'Research', value: 'research' },
+                        { label: 'Concept', value: 'concept' },
+                        { label: 'Archived', value: 'archived' },
                     ],
-                    defaultValue: 'building',
+                    defaultValue: 'concept',
                 }),
                 tags: fields.array(fields.text({ label: 'Tag' }), { label: 'Tags' }),
                 description: fields.text({ label: 'Short Description', multiline: true }),
@@ -69,6 +75,11 @@ export default config({
                     }),
                     { label: 'Gallery Images' }
                 ),
+                content: fields.document({
+                    label: 'Case Study (Detailed Content)',
+                    formatting: true,
+                    links: true,
+                }),
             },
         }),
         progress: collection({
@@ -166,7 +177,7 @@ export default config({
             path: 'src/content/pages/about',
             schema: {
                 pageTitle: fields.text({ label: 'Page Title', defaultValue: 'The Story' }),
-                story: fields.mdx({ label: 'My Story' }),
+                story: fields.document({ label: 'My Story', formatting: true, links: true }),
                 skills: fields.array(fields.text({ label: 'Skill' }), { label: 'Skills List' }),
                 profileImage: fields.image({
                     label: 'Profile Image',

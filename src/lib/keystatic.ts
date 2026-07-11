@@ -6,17 +6,32 @@ const reader = createReader(process.cwd(), keystaticConfig);
 // Projects
 export async function getProjects() {
     const projects = await reader.collections.projects.all();
-    return projects.map((project) => ({
-        slug: project.slug,
-        ...project.entry,
-        status: (project.entry.status as "live" | "building" | "idea") || "building",
-        title: typeof project.entry.title === 'string' ? { name: project.entry.title } : project.entry.title,
-        tags: (project.entry.tags || []) as readonly string[],
-        link: project.entry.link || undefined,
-        image: project.entry.image || undefined,
-        videoUrl: project.entry.videoUrl || undefined,
-        gallery: project.entry.gallery || [],
-    }));
+    return projects.map((project) => {
+        const { content, ...restEntry } = project.entry;
+        return {
+            slug: project.slug,
+            ...restEntry,
+            featured: project.entry.featured || false,
+            domain: project.entry.domain || "artificial-intelligence",
+            maturity: project.entry.maturity || "concept",
+            title: typeof project.entry.title === 'string' ? { name: project.entry.title } : project.entry.title,
+            tags: (project.entry.tags || []) as readonly string[],
+            link: project.entry.link || undefined,
+            image: project.entry.image || undefined,
+            videoUrl: project.entry.videoUrl || undefined,
+            gallery: project.entry.gallery || [],
+        };
+    });
+}
+
+export async function getProject(slug: string) {
+    const project = await reader.collections.projects.read(slug);
+    if (!project) return null;
+    return {
+        ...project,
+        title: typeof project.title === 'string' ? { name: project.title } : project.title,
+        tags: (project.tags || []) as readonly string[],
+    };
 }
 
 // Insights (Blog/Ideas)
